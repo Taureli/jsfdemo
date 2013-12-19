@@ -18,11 +18,13 @@ public class PersonManager {
 	private List<Person> db = new ArrayList<Person>();
 
 	public void addPerson(Person person) {
-//		Person newPerson = new Person();
+		//Person newPerson = new Person();
+		
+		person.setId(null);
 //
-//		newPerson.setFirstName(person.getFirstName());
+		//newPerson.setFirstName(person.getFirstName());
 //		newPerson.setZipCode(person.getZipCode());
-//		newPerson.setPin(person.getPin());
+		//newPerson.setPin(person.getPin());
 //		newPerson.setDateOfBirth(person.getDateOfBirth());
 //		newPerson.setMarried(person.isMarried());
 //		newPerson.setWeight(person.getWeight());
@@ -30,13 +32,13 @@ public class PersonManager {
 
 		//db.add(newPerson);
 		
-		person.setFirstName(person.getFirstName());
-		person.setZipCode(person.getZipCode());
-		person.setPin(person.getPin());
-		person.setDateOfBirth(person.getDateOfBirth());
-		person.setMarried(person.isMarried());
-		person.setWeight(person.getWeight());
-		person.setNumOfChildren(person.getNumOfChildren());
+//		person.setFirstName(person.getFirstName());
+//		//person.setZipCode(person.getZipCode());
+//		person.setPin(person.getPin());
+////		person.setDateOfBirth(person.getDateOfBirth());
+////		person.setMarried(person.isMarried());
+////		person.setWeight(person.getWeight());
+////		person.setNumOfChildren(person.getNumOfChildren());
 		
 		em.persist(person);
 	}
@@ -54,7 +56,13 @@ public class PersonManager {
 			db.remove(personToRemove);
 	}
 
-	public List<Person> getAllPersons() {
-		return db;
-	}
+//	public List<Person> getAllPersons() {
+//		return db;
+//	}
+	
+	@SuppressWarnings("unchecked")
+    public List<Person> getAllPersons() {
+            return em.createNamedQuery("person.all").getResultList();
+    }
+	
 }

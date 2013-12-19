@@ -3,8 +3,13 @@ package com.example.jsfdemo.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -16,15 +21,28 @@ import javax.validation.constraints.Size;
 })
 public class Person {
 	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	private String firstName = "unknown";
 	private String zipCode = "";
 	private String pin = "";
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOfBirth = new Date();
 	private double weight;
 	private boolean married;
 	private int numOfChildren;
 	
-	@Size(min = 2, max = 20)
+	
+    public Long getId() {
+            return id;
+    }
+    public void setId(Long id) {
+            this.id = id;
+    }
+	
+	//@Size(min = 2, max = 20)
 	public String getFirstName() {
 		return firstName;
 	}
@@ -32,7 +50,7 @@ public class Person {
 		this.firstName = firstName;
 	}
 	
-	@Pattern(regexp = "[0-9]{2}-[0-9]{3}")
+	//@Pattern(regexp = "[0-9]{2}-[0-9]{3}")
 	public String getZipCode() {
 		return zipCode;
 	}
@@ -40,7 +58,7 @@ public class Person {
 		this.zipCode = zipCode;
 	}
 	
-	@Size(min = 2)
+	//@Size(min = 2)
 	public String getPin() {
 		return pin;
 	}
@@ -48,7 +66,7 @@ public class Person {
 		this.pin = pin;
 	}
 	
-	@Min(0)
+//	//@Min(0)
 	public int getNumOfChildren() {
 		return numOfChildren;
 	}
@@ -56,7 +74,7 @@ public class Person {
 		this.numOfChildren = numOfChildren;
 	}
 	
-	@Past
+	//@Past
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
